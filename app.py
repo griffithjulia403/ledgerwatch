@@ -4,16 +4,21 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 # -------------------------
-# HOMEPAGE ROUTE
+# HOMEPAGE ROUTES
 # -------------------------
 @app.route('/home')
 def home():
     return render_template('home.html')
 
-# Make the homepage the default landing page
+# Default landing page
 @app.route('/')
 def index():
     return render_template('home.html')
+
+# Upload form page
+@app.route('/upload')
+def upload():
+    return render_template('index.html')
 
 
 # -------------------------
