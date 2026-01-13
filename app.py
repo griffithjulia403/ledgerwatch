@@ -3,10 +3,22 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+# -------------------------
+# HOMEPAGE ROUTE
+# -------------------------
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+# Make the homepage the default landing page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('home.html')
 
+
+# -------------------------
+# ANALYSIS ROUTE
+# -------------------------
 @app.route('/analyze', methods=['POST'])
 def analyze():
     file = request.files.get('file')
@@ -125,6 +137,10 @@ def analyze():
         message="We found unusual year-over-year changes."
     )
 
+
+# -------------------------
+# RUN APP LOCALLY
+# -------------------------
 if __name__ == '__main__':
     print("LedgerWatch is starting...")
     app.run(debug=True)
